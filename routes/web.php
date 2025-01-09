@@ -19,3 +19,10 @@ Route::post('/books', function () {
 
     return response()->json('', '201');
 })->name('book.store');
+
+Route::put('/books/{book}', function (Book $book) {
+    $book->title = request()->get('title');
+    $book->description = request()->get('description');
+    $book->save();
+
+})->name('book.update');
