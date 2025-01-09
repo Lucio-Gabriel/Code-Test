@@ -13,3 +13,9 @@ Route::get('/book', function () {
     ]);
 });
 
+Route::post('/books', function () {
+    Book::query()
+        ->create(request()->only('title', 'description'));
+
+    return response()->json('', '201');
+})->name('book.store');
