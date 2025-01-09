@@ -29,3 +29,7 @@ Route::put('/books/{book}', function (Book $book) {
 Route::delete('/books/{book}', function (Book $book) {
     $book->forceDelete();
 })->name('book.destroy');
+
+Route::delete('/books/{book}/soft-delete', function (Book $book) {
+    $book->delete();
+})->name('book.soft-delete');
