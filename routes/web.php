@@ -24,5 +24,8 @@ Route::put('/books/{book}', function (Book $book) {
     $book->title = request()->get('title');
     $book->description = request()->get('description');
     $book->save();
-
 })->name('book.update');
+
+Route::delete('/books/{book}', function (Book $book) {
+    $book->forceDelete();
+})->name('book.destroy');

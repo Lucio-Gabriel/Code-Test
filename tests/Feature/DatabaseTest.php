@@ -3,6 +3,8 @@
 use App\Models\Book;
 use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Laravel\assertDatabaseHas;
+use function Pest\Laravel\assertDatabaseMissing;
+use function Pest\Laravel\deleteJson;
 use function Pest\Laravel\postJson;
 use function Pest\Laravel\putJson;
 
@@ -47,9 +49,16 @@ it('should be able to update a book', function () {
 
 it('should be able to delete a book', function () {
 
-    
+  $book = Book::factory()->create();
 
-})->todo();
+  deleteJson(route('book.destroy', $book));
+
+  assertDatabaseMissing('books', [
+      'id' => $book->id
+  ]);
+
+  assertDatabaseCount('books', 0);
+});
 
 it('should be able to soft delete a book', function () {
 
