@@ -33,3 +33,9 @@ Route::delete('/books/{book}', function (Book $book) {
 Route::delete('/books/{book}/soft-delete', function (Book $book) {
     $book->delete();
 })->name('book.soft-delete');
+
+Route::get('/posts/create', \App\Livewire\CreatePost::class);
+
+Route::get('/posts/show', \App\Livewire\ShowPost::class);
+
+Route::get('/posts/update/{post}', \App\Livewire\UpdatePost::class);
